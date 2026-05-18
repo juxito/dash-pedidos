@@ -1,12 +1,13 @@
 <?php
-
 declare(strict_types=1);
-
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard.index');
+    }
     return view('welcome');
 });
 

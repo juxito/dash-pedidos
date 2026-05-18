@@ -1,7 +1,8 @@
+import React from 'react'
 import AuthenticatedLayout from '../Layouts/Authenticated'
-import OrdersTable from '@/Components/OrdersTable'
-import Pagination from '@/Components/Pagination'
-import TabNavigation from '@/Components/TabNavigation'
+import OrdersTable from '@/components/OrdersTable'
+import Pagination from '@/components/Pagination'
+import TabNavigation from '@/components/TabNavigation'
 
 const sections = [
     { name: 'index', label: 'Por Enviar' },

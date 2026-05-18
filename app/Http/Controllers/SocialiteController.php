@@ -53,9 +53,10 @@ class SocialiteController extends Controller
      * @return RedirectResponse
      */
     public function logout(): RedirectResponse
-    {
-        auth()->logout();
-
-        return redirect('/');
-    }
+{
+    auth()->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+}
 }

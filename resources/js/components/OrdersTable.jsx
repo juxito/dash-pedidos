@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from '@inertiajs/react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
