@@ -14,14 +14,24 @@ export default function AuthenticatedLayout({ children }) {
                         </div>
                         <div className="flex items-center space-x-4">
                             <span className="text-sm text-gray-600">Bienvenido</span>
-                            <Link
-                                href="/logout"
-                                method="post"
-                                as="button"
+                            <button
+                                onClick={() => {
+                                    const form = document.createElement('form')
+                                    form.method = 'POST'
+                                    form.action = '/logout'
+                                    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                    const input = document.createElement('input')
+                                    input.type = 'hidden'
+                                    input.name = '_token'
+                                    input.value = token
+                                    form.appendChild(input)
+                                    document.body.appendChild(form)
+                                    form.submit()
+                                }}
                                 className="text-sm text-red-600 hover:text-red-800"
                             >
                                 Cerrar Sesión
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -45,4 +45,15 @@ class HandleInertiaRequests extends Middleware
             ],
         ];
     }
+
+    public function handle(Request $request, \Closure $next): mixed
+    {
+        $response = parent::handle($request, $next);
+        
+        if ($request->user()) {
+            $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate');
+        }
+        
+        return $response;
+    }
 }

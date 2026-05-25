@@ -17,7 +17,10 @@ class SocialiteController extends Controller
      */
     public function redirect(): RedirectResponse
     {
-        return Socialite::driver('github')->redirect();
+        // return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')
+        ->with(['prompt' => 'consent'])
+        ->redirect();
     }
 
     /**
@@ -39,7 +42,7 @@ class SocialiteController extends Controller
                 ]
             );
 
-            auth()->login($user, remember: true);
+            auth()->login($user, remember: false);
 
             return redirect('/dashboard');
         } catch (\Exception $e) {
@@ -53,10 +56,10 @@ class SocialiteController extends Controller
      * @return RedirectResponse
      */
     public function logout(): RedirectResponse
-{
-    auth()->logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect('/');
-}
+    {
+        auth()->logoutCurrentDevice(); // cierra solo este dispositivo, respeta otros
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/');
+    }
 }

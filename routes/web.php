@@ -9,7 +9,7 @@ Route::get('/', function () {
         return redirect()->route('dashboard.index');
     }
     return view('welcome');
-});
+})->name('login');
 
 Route::prefix('auth')->name('auth.')->group(function (): void {
     Route::get('github/redirect', [SocialiteController::class, 'redirect'])->name('github.redirect');
